@@ -152,12 +152,13 @@ def to_markdown(rows: list[dict], title: str, checks: list[dict] | None = None) 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="取得済みページをオフラインで再解析する")
     ap.add_argument("--source", help="取得元モジュール名 (例: npb_calendar, html_source)")
-    patterns = ap.add_mutually_exclusive_group()
-    patterns.add_argument("--pattern", help="html_source 専用の DOM パターンキー（一覧: --list-patterns）")
+    ap.add_argument("--pattern", help="DOM パターンキー (例: github_readme, article_body, documentation_main, portfolio_profile)")
     ap.add_argument("--cache", type=Path, help="QueRyu のキャッシュディレクトリ")
+    ap.add_argument("--har", type=Path, help="HAR (HTTP Archive) JSON から DOM 構造スケルトンを抽出する")
+    ap.add_argument("--skeleton", action="store_true", help="本文テキストを除去した DOM 構造スケルトンと構造指標を出力する")
     ap.add_argument("--out", type=Path, help="Markdown の出力先")
     ap.add_argument("--strict", action="store_true", help="未知の表記、または既知値と合わない group があれば終了コード1")
-    patterns.add_argument("--list-patterns", action="store_true", help="利用可能な DOM パターンの一覧を表示する")
+    ap.add_argument("--list-patterns", action="store_true", help="利用可能な DOM パターンの一覧を表示する")
     args = ap.parse_args(argv)
 
     if args.list_patterns:
@@ -170,17 +171,24 @@ def main(argv=None) -> int:
             print(f"      desc: {p['description']}")
         return 0
 
-    if not args.source or not args.cache:
-        ap.error("--source and --cache are required unless --list-patterns is specified")
+    if args.har:
+        from dom_structure import ingest_har
+        import json
+        har_data = args.har.read_text(encoding="utf-8")
+        results = ingest_har(har_data)
+        out_json = json.dumps(results, ensure_ascii=False, indent=2)
+        if args.out:
+            args.out.parent.mkdir(parents=True, exist_ok=True)
+            args.out.write_text(out_json, encoding="utf-8")
+        print(out_json)
+        return 0
 
-    if args.pattern is not None:
-        if args.source != "html_source":
-            ap.error("--pattern requires --source html_source")
+    if not args.source or not args.cache:
+        ap.error("--source and --cache are required unless --list-patterns or --har is specified")
+
+    if args.pattern and args.source == "html_source":
         from html_source import HtmlSource
-        try:
-            source = HtmlSource(pattern=args.pattern)
-        except ValueError as exc:
-            ap.error(f"--pattern: {exc}. Use --list-patterns to see available presets")
+        source = HtmlSource(pattern=args.pattern)
     else:
         source = load_source(args.source)
 

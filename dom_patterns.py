@@ -123,8 +123,8 @@ def get_selector_for_pattern(pattern_key: str) -> str:
     return get_pattern(pattern_key)["selector"]
 
 
-def detect_pattern(html: str) -> list[dict]:
-    """Analyze DOM HTML and return candidate pattern matches ranked by match score.
+def detect_pattern(html: str, *, use_skeleton: bool = True) -> list[dict]:
+    """Analyze DOM HTML (or its structural skeleton) and return candidate pattern matches ranked by match score.
 
     Score is based on selector presence and node matching count.
     Returns list of dicts:
@@ -132,6 +132,9 @@ def detect_pattern(html: str) -> list[dict]:
     """
     if not isinstance(html, str) or not html.strip():
         return []
+    if use_skeleton:
+        from dom_structure import skeletonize
+        html = skeletonize(html)
     tree = HTMLParser(html)
     results = []
     for pattern in DOM_PATTERNS.values():
