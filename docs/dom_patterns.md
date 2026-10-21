@@ -12,6 +12,11 @@ BlueProbe は保存済み HTML の DOM 構造から特定の主要コンテン�
 | `documentation_main` | `documentation` | Documentation Main Section | `main, [role='main'], article.doc-content, .docs-content, .md-content` | Read the Docs, Docusaurus |
 | `portfolio_profile` | `portfolio_bio` | Portfolio / Profile Section | `section#about, #about, .profile, .portfolio, section.bio, #portfolio` | ポートフォリオ・自己紹介 |
 | `reader_page` | `reader_view` | Distraction-free Reader View | `#reader-content, .reader-view, article, main` | リーダーモード・Web クリップ |
+| `google_search` | `google_services` | Google Search Results Layout | `#search, .g, #rso, div[data-async-context]` | Google 検索結果リスト |
+| `google_scholar` | `google_services` | Google Scholar Results Layout | `.gs_r, #gs_res_ccl, .gs_ri` | Google Scholar 学術検索 |
+| `google_play` | `google_services` | Google Play Store Page Layout | `.VfPpkd-Wsjh2c, .fL83ws, [role='main']` | Google Play アプリ詳細 |
+| `google_workspace_doc` | `google_services` | Google Workspace Canvas Layout | `.kix-appview, .docs-editor, #docs-chrome` | Google Docs / Workspace |
+| `google_youtube` | `google_services` | Google YouTube Page Layout | `ytd-app, #primary, #contents, ytd-watch-flexy` | YouTube アプリ／動画画面 |
 | `npb_calendar` | `npb_sports` | NPB Schedule Calendar Table | `#calendar, .calendar, table.calendar` | NPB 公式戦カレンダー表 |
 | `npb_linescore` | `npb_sports` | NPB Game Linescore Table | `table.score_table, .linescore, #linescore` | NPB 試合得点表 |
 | `generic_main` | `generic` | Generic Main Region | `main, #main, #content, .main-content` | 一般 Web ページの main |

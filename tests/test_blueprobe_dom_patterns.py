@@ -118,3 +118,24 @@ def test_detect_pattern_empty_or_no_match():
     keys = [m["pattern"]["key"] for m in matches]
     assert "github_readme" not in keys
     assert "portfolio_profile" not in keys
+
+
+def test_google_services_pattern_presets():
+    # Verify google_services category and pattern keys exist
+    search_pattern = dom_patterns.get_pattern("google_search")
+    assert search_pattern["category"] == "google_services"
+
+    doc_pattern = dom_patterns.get_pattern("google_workspace_doc")
+    assert doc_pattern["key"] == "google_workspace_doc"
+
+    # Test Google Search classification
+    google_search_html = "<html><body><div id='search'><div class='g'>Result 1</div></div></body></html>"
+    search_matches = dom_patterns.detect_pattern(google_search_html)
+    assert search_matches
+    assert search_matches[0]["pattern"]["key"] == "google_search"
+
+    # Test YouTube classification
+    youtube_html = "<html><body><ytd-app><div id='primary'>Player</div></ytd-app></body></html>"
+    yt_matches = dom_patterns.detect_pattern(youtube_html)
+    assert yt_matches
+    assert yt_matches[0]["pattern"]["key"] == "google_youtube"
