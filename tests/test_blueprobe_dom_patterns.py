@@ -128,6 +128,9 @@ def test_google_services_pattern_presets():
     doc_pattern = dom_patterns.get_pattern("google_workspace_doc")
     assert doc_pattern["key"] == "google_workspace_doc"
 
+    maps_pattern = dom_patterns.get_pattern("google_maps")
+    assert maps_pattern["category"] == "google_services"
+
     # Test Google Search classification
     google_search_html = "<html><body><div id='search'><div class='g'>Result 1</div></div></body></html>"
     search_matches = dom_patterns.detect_pattern(google_search_html)
@@ -139,3 +142,17 @@ def test_google_services_pattern_presets():
     yt_matches = dom_patterns.detect_pattern(youtube_html)
     assert yt_matches
     assert yt_matches[0]["pattern"]["key"] == "google_youtube"
+
+
+def test_google_discontinued_services_pattern_presets():
+    reader_pattern = dom_patterns.get_pattern("google_reader")
+    assert reader_pattern["category"] == "google_discontinued"
+
+    plus_pattern = dom_patterns.get_pattern("google_plus")
+    assert plus_pattern["category"] == "google_discontinued"
+
+    # Test Google Reader pattern match
+    reader_html = "<html><body><div id='entries'><div class='entry'>Item</div></div></body></html>"
+    reader_matches = dom_patterns.detect_pattern(reader_html)
+    assert reader_matches
+    assert reader_matches[0]["pattern"]["key"] == "google_reader"

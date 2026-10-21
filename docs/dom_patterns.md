@@ -16,7 +16,14 @@ BlueProbe は保存済み HTML の DOM 構造から特定の主要コンテン�
 | `google_scholar` | `google_services` | Google Scholar Results Layout | `.gs_r, #gs_res_ccl, .gs_ri` | Google Scholar 学術検索 |
 | `google_play` | `google_services` | Google Play Store Page Layout | `.VfPpkd-Wsjh2c, .fL83ws, [role='main']` | Google Play アプリ詳細 |
 | `google_workspace_doc` | `google_services` | Google Workspace Canvas Layout | `.kix-appview, .docs-editor, #docs-chrome` | Google Docs / Workspace |
+| `google_maps` | `google_services` | Google Maps Web App Layout | `#scene, #content-container, .widget-scene, #searchbox` | Google Maps マップ情報画面 |
 | `google_youtube` | `google_services` | Google YouTube Page Layout | `ytd-app, #primary, #contents, ytd-watch-flexy` | YouTube アプリ／動画画面 |
+| `google_plus` | `google_discontinued` | Google+ Stream Layout | `[data-group-id], .c-b-p-R, .yAa, .u8b` | Google+ (サ終) ストリーム |
+| `google_reader` | `google_discontinued` | Google Reader Feed Layout | `#entries, .entry, #viewer-container, #nav` | Google Reader (サ終) フィード |
+| `google_wave` | `google_discontinued` | Google Wave Workspace Layout | `.wave-panel, .wave-root, .wave-gadget` | Google Wave (サ終) 協調編集 |
+| `google_allo_web` | `google_discontinued` | Google Allo Web Messenger Layout | `.conversation-container, .message-list` | Google Allo Web (サ終) |
+| `google_orkut` | `google_discontinued` | Orkut Social Network Layout | `.orkut-body, #profile-container, .scrapbook` | Orkut (サ終) SNS |
+| `google_picasa` | `google_discontinued` | Picasa Web Albums Layout | `.gphoto-album, .picasa-photo-grid, #album-view` | Picasa Web Albums (サ終) |
 | `npb_calendar` | `npb_sports` | NPB Schedule Calendar Table | `#calendar, .calendar, table.calendar` | NPB 公式戦カレンダー表 |
 | `npb_linescore` | `npb_sports` | NPB Game Linescore Table | `table.score_table, .linescore, #linescore` | NPB 試合得点表 |
 | `generic_main` | `generic` | Generic Main Region | `main, #main, #content, .main-content` | 一般 Web ページの main |
