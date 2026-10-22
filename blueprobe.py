@@ -183,8 +183,37 @@ def main(argv=None) -> int:
         print(out_json)
         return 0
 
+    if args.skeleton:
+        if not args.cache:
+            ap.error("--cache is required when using --skeleton")
+        from dom_structure import skeletonize, structural_fingerprint
+        import json
+        manifest = args.cache / "manifest.jsonl"
+        if not manifest.exists():
+            print(f"no cache manifest: {manifest}", file=sys.stderr)
+            return 1
+        from queryu import Cache
+        cache = Cache(args.cache)
+        results = []
+        for entry in cache.latest().values():
+            body = cache.body(entry)
+            if body:
+                results.append({
+                    "key": entry["key"],
+                    "url": entry["url"],
+                    "group": entry["group"],
+                    "skeleton": skeletonize(body),
+                    "fingerprint": structural_fingerprint(body),
+                })
+        out_json = json.dumps(results, ensure_ascii=False, indent=2)
+        if args.out:
+            args.out.parent.mkdir(parents=True, exist_ok=True)
+            args.out.write_text(out_json, encoding="utf-8")
+        print(out_json)
+        return 0
+
     if not args.source or not args.cache:
-        ap.error("--source and --cache are required unless --list-patterns or --har is specified")
+        ap.error("--source and --cache are required unless --list-patterns, --skeleton, or --har is specified")
 
     if args.pattern and args.source == "html_source":
         from html_source import HtmlSource

@@ -3,6 +3,23 @@ import dom_patterns
 import dom_structure
 
 
+def test_skeletonize_void_tags_in_stripped_element():
+    # Void tag (<img>) inside <noscript> should not corrupt skip_stack and swallow subsequent <main>
+    raw_html = """
+    <html>
+      <head>
+        <noscript><img src="tracking.gif"><p>No JS</p></noscript>
+      </head>
+      <body>
+        <main id="valid-main"><p>Text</p></main>
+      </body>
+    </html>
+    """
+    skeleton = dom_structure.skeletonize(raw_html)
+    assert '<main id="valid-main">' in skeleton
+    assert "<p></p>" in skeleton
+
+
 def test_skeletonize_strips_text_and_scripts():
     raw_html = """
     <!DOCTYPE html>

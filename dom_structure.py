@@ -38,7 +38,10 @@ class _SkeletonParser(HTMLParser):
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]):
         tag_lower = tag.lower()
         if self.skip_stack or tag_lower in _STRIP_TAGS:
-            self.skip_stack.append(tag_lower)
+            if tag_lower in _STRIP_TAGS and tag_lower not in _VOID_TAGS:
+                self.skip_stack.append(tag_lower)
+            elif self.skip_stack and tag_lower not in _VOID_TAGS and tag_lower not in _STRIP_TAGS:
+                self.skip_stack.append(tag_lower)
             return
 
         attr_str = ""

@@ -7,7 +7,28 @@ BlueProbe は保存済み HTML の DOM 構造から特定の主要コンテン�
 
 | パターンキー (`key`) | カテゴリ | ラベル | CSS セレクタ (`selector`) | 対象の例 |
 |---|---|---|---|---|
-| `github_readme` | `repository_readme` | GitHub README / Markdown Body | `article.markdown-body, .markdown-body` | GitHub, Gitea, npm README |
+| `github_readme` | `repository_readme` | GitHub README / Markdown Body | `article.markdown-body, .markdown-body` | GitHub, Gitea |
+| `gitlab_readme` | `developer_git` | GitLab README / Blob Viewer Layout | `article.file-content, .readme-holder, .blob-viewer` | GitLab |
+| `bitbucket_readme` | `developer_git` | Bitbucket Repository README Layout | `.bitbucket-readme, #readme, .readme-content` | Bitbucket |
+| `stackoverflow_qa` | `developer_git` | Stack Overflow / Q&A Post Layout | `#answers, .question, .answer, .post-text, .js-post-body` | Stack Overflow, Stack Exchange |
+| `pypi_readme` | `developer_git` | PyPI Package Description Layout | `#description, .project-description, .article` | PyPI |
+| `npm_readme` | `developer_git` | npm Package README Layout | `#readme, article._7823f6e9, article.markdown` | npm |
+| `hacker_news` | `tech_publishing` | Hacker News Story & Comment Layout | `table.fatitem, table.itemList, .comment-tree` | Hacker News |
+| `devto_article` | `tech_publishing` | Dev.to Tech Article Layout | `#article-show-container, .crayons-article__main` | Dev.to |
+| `zenn_article` | `tech_publishing` | Zenn Tech Article Layout | `.zn-topic-content, .zn-styled-body, article` | Zenn.dev |
+| `qiita_article` | `tech_publishing` | Qiita Tech Article Layout | `.p-hyuki, [data-hyperion-target='body'], article` | Qiita |
+| `medium_article` | `tech_publishing` | Medium Article Body Layout | `article, section[data-field='body'], .postArticle-content` | Medium |
+| `x_twitter_timeline` | `social_media` | X / Twitter Timeline & Tweet Layout | `[data-testid='tweet'], [data-testid='primaryColumn'], [role='region']` | X (Twitter) |
+| `reddit_thread` | `social_media` | Reddit Post & Thread Layout | `sharded-scroller, [data-testid='post-container'], .Post, [shreddit-post]` | Reddit |
+| `mastodon_status` | `social_media` | Mastodon / ActivityPub Status Layout | `.status__content, .entry, .status` | Mastodon |
+| `bluesky_post` | `social_media` | Bluesky Feed & Post Layout | `[data-testid='postThread'], [data-testid='feedItem']` | Bluesky |
+| `discord_web` | `social_media` | Discord Web Chat Container | `[class*='messagesWrapper'], [class*='chatContent'], [role='log']` | Discord Web |
+| `amazon_product` | `ecommerce` | Amazon Product Detail Layout | `#dp-container, #productTitle, #centerCol` | Amazon |
+| `ebay_item` | `ecommerce` | eBay Item Listing Layout | `#mainContent, .x-item-title, .x-item-card` | eBay |
+| `shopify_product` | `ecommerce` | Shopify Product Page Layout | `.product-single, .product-template, [data-product-single]` | Shopify |
+| `bing_search` | `search_engines` | Bing Search Results Layout | `#b_results, .b_algo, #b_content` | Bing |
+| `duckduckgo_search` | `search_engines` | DuckDuckGo Search Results Layout | `#links, .react-results--main, .result` | DuckDuckGo |
+| `yahoo_search` | `search_engines` | Yahoo! Search Results Layout | `#main, .web-result, #web` | Yahoo! Search |
 | `article_body` | `article_reader` | Article / Blog Main Body | `article, [role='main'] article, .article-body, .entry-content, .post-content` | ブログ・ニュース記事本文 |
 | `documentation_main` | `documentation` | Documentation Main Section | `main, [role='main'], article.doc-content, .docs-content, .md-content` | Read the Docs, Docusaurus |
 | `portfolio_profile` | `portfolio_bio` | Portfolio / Profile Section | `section#about, #about, .profile, .portfolio, section.bio, #portfolio` | ポートフォリオ・自己紹介 |

@@ -156,3 +156,34 @@ def test_google_discontinued_services_pattern_presets():
     reader_matches = dom_patterns.detect_pattern(reader_html)
     assert reader_matches
     assert reader_matches[0]["pattern"]["key"] == "google_reader"
+
+
+def test_developer_sns_ecommerce_search_patterns():
+    # Developer & Git tools
+    gitlab = dom_patterns.get_pattern("gitlab_readme")
+    assert gitlab["category"] == "developer_git"
+
+    so = dom_patterns.get_pattern("stackoverflow_qa")
+    assert so["category"] == "developer_git"
+
+    # Social Media / SNS
+    reddit = dom_patterns.get_pattern("reddit_thread")
+    assert reddit["category"] == "social_media"
+
+    # Tech Publishing
+    hn = dom_patterns.get_pattern("hacker_news")
+    assert hn["category"] == "tech_publishing"
+
+    # E-Commerce
+    amazon = dom_patterns.get_pattern("amazon_product")
+    assert amazon["category"] == "ecommerce"
+
+    # Search Engines
+    bing = dom_patterns.get_pattern("bing_search")
+    assert bing["category"] == "search_engines"
+
+    # Pattern detection verification for StackOverflow
+    so_html = "<html><body><div id='answers'><div class='answer'>Ans</div></div></body></html>"
+    so_matches = dom_patterns.detect_pattern(so_html)
+    assert so_matches
+    assert so_matches[0]["pattern"]["key"] == "stackoverflow_qa"
