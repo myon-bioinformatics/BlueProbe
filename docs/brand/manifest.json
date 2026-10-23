@@ -1,0 +1,27 @@
+{
+  "source": "User-supplied project artwork sheet, 2026-10-23",
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "coordinate_convention": "left, top, right-exclusive, bottom-exclusive",
+  "project": {
+    "label": "BlueProbe",
+    "icon": [
+      640,
+      70,
+      809,
+      239
+    ],
+    "favicon": [
+      820,
+      158,
+      887,
+      225
+    ],
+    "icon_sha256": "7d5a5234a5b9cd488b7f9a4dcfddb20728ac69a9459e28eb6ed9b40f2ca992a9",
+    "icon_rgb_sha256": "d881445322790acea27cb7dc52b53982fa20e62280964722d6015bdfa3b7ed6e",
+    "favicon_sha256": "08ee33082c2a6d77726bcc47486d1c8c384cb01fa50dbd170a0f050d080451ea",
+    "favicon_rgb_sha256": "bd4d860b35e1228e930de9057748542fb5ae067cb8c6802431e76d1d04456c4c"
+  }
+}
