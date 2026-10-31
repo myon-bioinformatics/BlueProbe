@@ -6,7 +6,6 @@ PARENT = "myon-bioinformatics/myon-bioinformatics"
 PARENT_WORKFLOW_PIN = "9e3da7ae1846e9604ebc24bb5178f7de094a4e77"
 LATEST_SETUP = {
     "actions/setup-node": "949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0",
-    "actions/setup-python": "6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0",
     "astral-sh/setup-uv": "68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3",
 }
 ACTION_PINS = {
@@ -50,6 +49,7 @@ def test_no_vendor_dispatch_job_remains():
     assert "python -S" not in text
     assert "uv run --locked --python" in text
     assert "pytest" in text
+    assert "actions/setup-python" not in text
 
 
 def test_no_vendor_lock_is_kept():
