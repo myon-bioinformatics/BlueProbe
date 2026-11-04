@@ -29,12 +29,15 @@ def main():
                 start=time.perf_counter_ns()
                 result=list(funcs[k](tree.root))
                 elapsed=time.perf_counter_ns()-start
-                assert result==expected
+                if result != expected:
+                    raise SystemExit(f"traversal mismatch: {k}, depth={depth}")
                 if repeat: samples[k].append(elapsed)
         peaks={}
         for k,fn in funcs.items():
             tracemalloc.start()
-            list(fn(tree.root))
+            result = list(fn(tree.root))
+            if result != expected:
+                raise SystemExit(f"traversal mismatch during memory measurement: {k}")
             peaks[k]=tracemalloc.get_traced_memory()[1]
             tracemalloc.stop()
         records.append({'depth':depth,'samples_ns':samples,
