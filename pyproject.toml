@@ -14,7 +14,7 @@ dependencies = []
 blueprobe = "blueprobe:main"
 
 [dependency-groups]
-dev = ["pytest>=8", "selectolax>=1"]
+dev = [{ include-group = "observation-test" }, "selectolax>=1"]
 # Saved-observation tests only; the full dev group retains the Lexbor oracle.
 observation-test = ["pytest>=8"]
 
