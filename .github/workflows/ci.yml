@@ -25,7 +25,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - id: paths
-        uses: myon-bioinformatics/myon-bioinformatics/.github/actions/classify-changes@9d39adca921c233bb65b4a0cf80c61b7f7e00b5b
+        uses: myon-bioinformatics/myon-bioinformatics/.github/actions/classify-changes@main
       - name: Resolve Aoi ref
         if: steps.paths.outputs.product_changed == 'true' || github.event_name == 'schedule'
         id: resolve
